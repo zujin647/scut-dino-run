@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="华南理工大学校园主题跑酷游戏：校徽主角、木棉树障碍与逸夫科技馆等校园地标。"
+    />
+    <meta name="theme-color" content="#741c30" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>华工快跑 | 木棉校园跑酷</title>
+    <link rel="icon" href="./assets/scut-logo.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="./" aria-label="华工快跑首页">
+          <img src="./assets/scut-logo.svg" alt="" width="48" height="48" />
+          <span class="brand-copy">
+            <strong>华工快跑</strong>
+            <small>SCUT CAMPUS RUN</small>
+          </span>
+        </a>
+
+        <div class="header-actions" aria-label="游戏操作">
+          <button class="text-button" id="soundToggle" type="button" aria-pressed="true">
+            音效开
+          </button>
+          <button class="text-button" id="pauseButton" type="button">暂停</button>
+          <button class="text-button" id="fullscreenButton" type="button">全屏</button>
+          <button class="text-button" id="helpButton" type="button">说明</button>
+        </div>
+      </header>
+
+      <main class="main-layout">
+        <section class="game-stage" aria-labelledby="gameTitle">
+          <div class="stage-heading">
+            <div>
+              <p class="eyebrow">五山校园线 · 木棉花开</p>
+              <h1 id="gameTitle">校徽出发，穿过华工的一天</h1>
+            </div>
+            <div class="live-score" aria-live="polite">
+              <span>得分</span>
+              <strong id="liveScore">00000</strong>
+            </div>
+          </div>
+
+          <div class="canvas-frame" id="canvasFrame">
+            <canvas
+              id="gameCanvas"
+              width="1280"
+              height="720"
+              tabindex="0"
+              aria-label="华工快跑游戏区域。按空格或向上箭头跳跃，按向下箭头低头。"
+            ></canvas>
+            <div class="stage-status" id="stageStatus">待起跑</div>
+            <div class="speed-badge" id="speedBadge">速度 ×1.00</div>
+            <div class="swipe-hint" id="swipeHint">上滑跳跃 · 下滑低头</div>
+
+            <div class="game-overlay" id="gameOverlay">
+              <p class="overlay-kicker" id="overlayKicker">SCUT RUNNER</p>
+              <h2 id="overlayTitle">华工快跑</h2>
+              <p class="overlay-copy" id="overlayCopy">
+                校徽带你沿五山校园线一路向前。支持二段跳，越跑越快，看看能跑多远。
+              </p>
+              <div class="overlay-result" id="overlayResult" hidden>
+                <div>
+                  <span>本次得分</span>
+                  <strong id="finalScore">00000</strong>
+                </div>
+                <div>
+                  <span>个人最佳</span>
+                  <strong id="bestScore">00000</strong>
+                </div>
+              </div>
+              <button class="primary-button" id="startButton" type="button">开始奔跑</button>
+              <p class="overlay-controls">
+                <span>空格 / 向上键 跳跃（可二段）</span>
+                <span>向下键 低头</span>
+                <span>点击画面 跳跃</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="touch-controls" aria-label="触屏操作">
+            <button id="jumpButton" type="button" aria-label="跳跃">
+              <span aria-hidden="true">↑</span>
+              跳跃
+            </button>
+            <button id="duckButton" type="button" aria-label="低头">
+              <span aria-hidden="true">↓</span>
+              低头
+            </button>
+          </div>
+        </section>
+
+        <aside class="run-panel" aria-label="本局数据">
+          <div class="score-block">
+            <span>本次记录</span>
+            <strong id="sideScore">00000</strong>
+            <small id="scoreNote">越过木棉，继续向前</small>
+          </div>
+
+          <dl class="run-stats">
+            <div>
+              <dt>历史最佳</dt>
+              <dd id="sideBest">00000</dd>
+            </div>
+            <div>
+              <dt>累计奔跑</dt>
+              <dd id="totalRuns">0 次</dd>
+            </div>
+            <div>
+              <dt>校园时段</dt>
+              <dd id="timeOfDay">白日</dd>
+            </div>
+            <div>
+              <dt>当前速度</dt>
+              <dd id="speedStat">×1.00</dd>
+            </div>
+          </dl>
+
+          <div class="route-list">
+            <p>五山校园线</p>
+            <ol>
+              <li><span>01</span>逸夫科技馆</li>
+              <li><span>02</span>图书馆</li>
+              <li><span>03</span>六号楼</li>
+              <li><span>04</span>正门刻石</li>
+            </ol>
+          </div>
+
+          <button class="share-button" id="shareButton" type="button">分享本次战报</button>
+          <p class="share-note" id="shareNote" aria-live="polite"></p>
+        </aside>
+      </main>
+
+      <footer class="site-footer">
+        <span>华工主题跑酷 · 非官方校园互动作品</span>
+        <button id="footerHelpButton" type="button">素材与说明</button>
+      </footer>
+    </div>
+
+    <dialog class="info-dialog" id="infoDialog">
+      <div class="dialog-heading">
+        <div>
+          <p class="eyebrow">PLAY NOTES</p>
+          <h2>怎么跑得更远</h2>
+        </div>
+        <button class="text-button" id="closeDialogButton" type="button">关闭</button>
+      </div>
+
+      <div class="dialog-grid">
+        <section>
+          <h3>操作</h3>
+          <p>空格、向上键或轻触画面跳跃；空中再按一次可以二段跳。向下键或按住“低头”躲过低空蓝喜鹊。</p>
+          <p>跳跃可以短按，也可以长按争取更高弧度。落地前按跳跃会保留少量输入缓冲。</p>
+          <p>奔跑速度会随得分持续提高，右上角会显示当前速度倍率；提速时会出现闪烁和速度线。</p>
+        </section>
+        <section>
+          <h3>校园元素</h3>
+          <p>主角为华南理工大学校徽；障碍为木棉树；远景依次出现逸夫科技馆、图书馆、六号楼和正门刻石。</p>
+          <p>蓝喜鹊会按固定节奏低飞，站立一定会撞上；按住向下键低头后才能通过。高木棉会定期出现，需要连续完成两次跳跃。分数到 800 后会经历一次校园昼夜切换。</p>
+        </section>
+        <section>
+          <h3>设备与进度</h3>
+          <p>支持键盘和触屏，最高分与累计次数保存在当前浏览器。页面有离线缓存，断网后也能继续跑。</p>
+        </section>
+        <section>
+          <h3>素材说明</h3>
+          <p>
+            校徽来自华南理工大学公开留学手册页面，为校方标识的非官方游戏用途；校园建筑照片仅用于画面辨识参考，
+            来源为 Wikimedia Commons。建筑插画和游戏代码为本项目原创。
+          </p>
+          <p>
+            <a
+              href="https://zh.wikipedia.org/wiki/File:South_China_University_of_Technology_Logo_(Since_2022).svg"
+              target="_blank"
+              rel="noreferrer"
+              >校徽来源</a
+            >
+            ·
+            <a
+              href="https://commons.wikimedia.org/wiki/Category:Wushan_Campus_of_South_China_University_of_Technology"
+              target="_blank"
+              rel="noreferrer"
+              >校园照片来源</a
+            >
+          </p>
+        </section>
+      </div>
+    </dialog>
+
+    <script src="./game.js"></script>
+  </body>
+</html>

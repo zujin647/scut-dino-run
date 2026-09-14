@@ -1,0 +1,10 @@
+{
+  "name": "scut-dino-run",
+  "version": "1.0.0",
+  "private": true,
+  "description": "华南理工大学校园主题跑酷游戏",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check game.js && node --check server.js && node --check service-worker.js"
+  }
+}

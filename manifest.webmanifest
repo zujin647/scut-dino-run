@@ -1,0 +1,20 @@
+{
+  "name": "华工快跑 · 木棉校园跑酷",
+  "short_name": "华工快跑",
+  "description": "校徽主角与木棉树障碍的华南理工大学校园跑酷游戏。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#f4efe5",
+  "theme_color": "#741c30",
+  "icons": [
+    {
+      "src": "./assets/scut-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
