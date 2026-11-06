@@ -32,9 +32,10 @@ jobs:
       - name: Build static site
         run: |
           mkdir -p dist/assets
-          cp index.html styles.css game.js manifest.webmanifest service-worker.js dist/
+          cp index.html styles.css config.js game.js leaderboard.js manifest.webmanifest service-worker.js dist/
+          cp admin.html admin.js admin.css dist/
           cp assets/scut-logo.svg dist/assets/
-          cp README.md CREDITS.md dist/
+          cp README.md CREDITS.md DEPLOY.md dist/
           touch dist/.nojekyll
 
       - name: Configure Pages
