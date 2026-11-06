@@ -1503,6 +1503,12 @@
     stageStatus.textContent = "本轮结束";
     gameOverlay.classList.remove("is-hidden");
     updateHud();
+
+    window.dispatchEvent(
+      new CustomEvent("scut:run-finished", {
+        detail: { score: state.score, best: state.best },
+      }),
+    );
   }
 
   function setPaused(paused) {

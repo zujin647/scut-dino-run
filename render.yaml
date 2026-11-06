@@ -1,0 +1,21 @@
+# Render 蓝图：连仓库后一键创建 Web Service
+# 注意：免费实例不能挂持久盘，重新部署/休眠重启会丢掉 data/db.json。
+# 活动期间想要数据不丢，需要把 plan 改成 starter 并保留 disk 段。
+services:
+  - type: web
+    name: scut-run
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: DATA_DIR
+        value: /var/data
+    # disk:
+    #   name: scut-data
+    #   mountPath: /var/data
+    #   sizeGB: 1

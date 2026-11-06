@@ -927,3 +927,339 @@ canvas:focus-visible {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* 账号、排行榜                                                        */
+/* ------------------------------------------------------------------ */
+
+.header-actions .account-button {
+  border-color: var(--gold);
+  color: var(--gold-pale);
+  font-weight: 700;
+}
+
+.header-actions .account-button.is-signed-in {
+  max-width: 150px;
+  overflow: hidden;
+  color: var(--white);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: rgba(230, 184, 74, 0.16);
+}
+
+.overlay-note {
+  min-height: 1.1em;
+  margin: 10px 0 0;
+  color: var(--gold-pale);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.overlay-note[data-tone="error"] {
+  color: #ffb3bd;
+}
+
+.overlay-note[data-tone="muted"] {
+  color: var(--paper-deep);
+  font-weight: 400;
+}
+
+.leaderboard {
+  width: min(1540px, 100%);
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 54px) 42px;
+}
+
+.leaderboard-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--wine-deep);
+}
+
+.leaderboard-heading h2 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+  letter-spacing: 0.04em;
+}
+
+.leaderboard-meta {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.leaderboard-myrank {
+  margin: 14px 0 0;
+  padding: 10px 14px;
+  color: var(--wine-deep);
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: var(--gold-pale);
+  border-left: 4px solid var(--wine);
+}
+
+.leaderboard-list {
+  display: grid;
+  gap: 2px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rank-row {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  background: var(--white);
+  border: 1px solid rgba(29, 40, 49, 0.1);
+}
+
+.rank-no {
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+}
+
+.rank-row--top1 .rank-no {
+  color: #b8860b;
+  font-size: 1.1rem;
+}
+
+.rank-row--top2 .rank-no {
+  color: #7d8796;
+}
+
+.rank-row--top3 .rank-no {
+  color: #a9764b;
+}
+
+.rank-name {
+  overflow: hidden;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rank-score {
+  color: var(--wine);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.rank-row.is-me {
+  background: rgba(230, 184, 74, 0.22);
+  border-color: var(--wine);
+  box-shadow: inset 4px 0 0 var(--wine);
+}
+
+.leaderboard-empty {
+  margin: 16px 0 0;
+  padding: 22px;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  text-align: center;
+  background: rgba(255, 253, 248, 0.7);
+  border: 1px dashed rgba(29, 40, 49, 0.22);
+}
+
+.leaderboard-footnote {
+  margin: 14px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  line-height: 1.7;
+}
+
+.auth-dialog {
+  width: min(430px, calc(100vw - 28px));
+  max-height: calc(100vh - 40px);
+  padding: 0;
+  overflow: auto;
+  color: var(--ink);
+  background: var(--paper);
+  border: 4px solid var(--wine-deep);
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(29, 40, 49, 0.38);
+}
+
+.auth-dialog::backdrop {
+  background: rgba(29, 40, 49, 0.68);
+  backdrop-filter: blur(3px);
+}
+
+.auth-body {
+  display: grid;
+  gap: 14px;
+  padding: 18px 22px 24px;
+}
+
+.auth-subtitle {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+  line-height: 1.65;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.auth-tabs button {
+  flex: 1;
+  padding: 8px 10px;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: transparent;
+  border: 1px solid rgba(29, 40, 49, 0.2);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.auth-tabs button.is-active {
+  color: var(--white);
+  background: var(--wine);
+  border-color: var(--wine);
+}
+
+.auth-form {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.auth-form .primary-button,
+.auth-form .text-button {
+  width: 100%;
+}
+
+.auth-field {
+  display: grid;
+  gap: 6px;
+}
+
+.auth-field > span {
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.auth-field input {
+  width: 100%;
+  padding: 10px 12px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.86rem;
+  background: var(--white);
+  border: 1px solid rgba(29, 40, 49, 0.22);
+  border-radius: 6px;
+}
+
+.auth-field input:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 1px;
+}
+
+.auth-hint {
+  min-height: 1.1em;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.74rem;
+}
+
+.auth-hint[data-tone="error"] {
+  color: #b3261e;
+}
+
+.auth-hint[data-tone="ok"] {
+  color: #2f6b3a;
+}
+
+.account-panel {
+  display: grid;
+  gap: 16px;
+}
+
+.account-stats {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+  background: rgba(29, 40, 49, 0.12);
+  border: 1px solid rgba(29, 40, 49, 0.12);
+}
+
+.account-stats > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 12px;
+  font-size: 0.8rem;
+  background: var(--white);
+}
+
+.account-stats dt {
+  color: var(--ink-soft);
+}
+
+.account-stats dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.primary-button.danger {
+  color: var(--wine-deep);
+  background: transparent;
+}
+
+.primary-button.danger:hover {
+  color: var(--white);
+  background: var(--wine);
+}
+
+.header-actions .board-link {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.leaderboard-note {
+  margin: 10px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 560px) {
+  .site-header {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .leaderboard-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .rank-row {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    gap: 8px;
+    padding: 9px 10px;
+    font-size: 0.8rem;
+  }
+}

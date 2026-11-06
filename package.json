@@ -1,10 +1,17 @@
 {
   "name": "scut-dino-run",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "description": "华南理工大学校园主题跑酷游戏",
+  "description": "华南理工大学校园主题跑酷游戏（含账号、排行榜与管理端）",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "start": "node server.js",
-    "check": "node --check game.js && node --check server.js && node --check service-worker.js"
+    "public": "node start-public.js",
+    "lan": "node start-public.js --lan",
+    "check": "node --check server.js && node --check store.js && node --check start-public.js && node --check game.js && node --check leaderboard.js && node --check admin.js && node --check config.js && node --check service-worker.js && node --check scripts/reset-admin.js",
+    "test:api": "node tests/api-test.js",
+    "reset-admin": "node scripts/reset-admin.js"
   }
 }

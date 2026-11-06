@@ -33,6 +33,15 @@
           <button class="text-button" id="pauseButton" type="button">暂停</button>
           <button class="text-button" id="fullscreenButton" type="button">全屏</button>
           <button class="text-button" id="helpButton" type="button">说明</button>
+          <a class="text-button board-link" id="boardButton" href="#leaderboard">排行榜</a>
+          <button
+            class="text-button account-button"
+            id="accountButton"
+            type="button"
+            aria-label="登录或注册"
+          >
+            登录 / 注册
+          </button>
         </div>
       </header>
 
@@ -78,6 +87,7 @@
                 </div>
               </div>
               <button class="primary-button" id="startButton" type="button">开始奔跑</button>
+              <p class="overlay-note" id="overlayNote" hidden></p>
               <p class="overlay-controls">
                 <span>空格 / 向上键 跳跃（可二段）</span>
                 <span>向下键 低头</span>
@@ -139,6 +149,27 @@
         </aside>
       </main>
 
+      <section class="leaderboard" id="leaderboard" aria-labelledby="leaderboardTitle">
+        <div class="leaderboard-heading">
+          <div>
+            <p class="eyebrow">LEADERBOARD</p>
+            <h2 id="leaderboardTitle">实时排行榜</h2>
+          </div>
+          <p class="leaderboard-meta" id="leaderboardMeta">加载中…</p>
+        </div>
+
+        <p class="leaderboard-note">无需登录即可查看榜单；登录后，每局成绩才会进入排名。</p>
+
+        <p class="leaderboard-myrank" id="myRank" hidden></p>
+
+        <ol class="leaderboard-list" id="leaderboardList"></ol>
+        <p class="leaderboard-empty" id="leaderboardEmpty" hidden></p>
+
+        <p class="leaderboard-footnote">
+          登录后每局成绩自动上传，榜单取个人最高分；同分按达成时间先后排序。
+        </p>
+      </section>
+
       <footer class="site-footer">
         <span>华工主题跑酷 · 非官方校园互动作品</span>
         <button id="footerHelpButton" type="button">素材与说明</button>
@@ -195,6 +226,110 @@
       </div>
     </dialog>
 
+    <dialog class="auth-dialog" id="authDialog">
+      <div class="dialog-heading">
+        <div>
+          <p class="eyebrow">ACCOUNT</p>
+          <h2 id="authTitle">登录</h2>
+        </div>
+        <button class="text-button" id="closeAuthButton" type="button">关闭</button>
+      </div>
+
+      <div class="auth-body">
+        <p class="auth-subtitle" id="authSubtitle">用你的账号登录，成绩会自动进入排行榜。</p>
+
+        <div class="auth-tabs" id="authTabs" role="tablist" aria-label="登录或注册">
+          <button type="button" role="tab" data-mode="login" class="is-active" aria-selected="true">
+            登录
+          </button>
+          <button type="button" role="tab" data-mode="register" aria-selected="false">注册</button>
+        </div>
+
+        <form class="auth-form" id="authForm" novalidate>
+          <label class="auth-field">
+            <span>账号</span>
+            <input
+              id="fieldUsername"
+              name="username"
+              type="text"
+              autocomplete="username"
+              maxlength="24"
+              placeholder="建议直接用学号"
+              required
+            />
+          </label>
+
+          <label class="auth-field" id="nicknameField" hidden>
+            <span>姓名</span>
+            <input
+              id="fieldNickname"
+              name="nickname"
+              type="text"
+              autocomplete="nickname"
+              maxlength="16"
+              placeholder="显示在排行榜上"
+            />
+          </label>
+
+          <label class="auth-field">
+            <span>密码</span>
+            <input
+              id="fieldPassword"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              maxlength="64"
+              placeholder="至少 6 位"
+              required
+            />
+          </label>
+
+          <p class="auth-hint" id="authHint" aria-live="polite"></p>
+          <button class="primary-button" id="authSubmit" type="submit">登录</button>
+        </form>
+
+        <div class="account-panel" id="accountPanel" hidden>
+          <dl class="account-stats">
+            <div>
+              <dt>账号</dt>
+              <dd id="accountName"></dd>
+            </div>
+            <div>
+              <dt>最高分</dt>
+              <dd id="accountBest"></dd>
+            </div>
+            <div>
+              <dt>排名</dt>
+              <dd id="accountRank"></dd>
+            </div>
+          </dl>
+
+          <form class="auth-form" id="passwordForm">
+            <label class="auth-field">
+              <span>原密码</span>
+              <input name="oldPassword" type="password" autocomplete="current-password" required />
+            </label>
+            <label class="auth-field">
+              <span>新密码</span>
+              <input
+                name="newPassword"
+                type="password"
+                autocomplete="new-password"
+                minlength="6"
+                required
+              />
+            </label>
+            <p class="auth-hint" id="passwordHint" aria-live="polite"></p>
+            <button class="text-button" type="submit">修改密码</button>
+          </form>
+
+          <button class="primary-button danger" id="logoutButton" type="button">退出登录</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script src="./config.js"></script>
     <script src="./game.js"></script>
+    <script src="./leaderboard.js"></script>
   </body>
 </html>

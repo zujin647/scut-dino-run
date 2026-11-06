@@ -1,3 +1,12 @@
 artifacts/
 *.log
 .DS_Store
+
+# 排行榜数据库，不要提交
+data/
+*.db
+*.db-wal
+*.db-shm
+
+# 本地截图预览
+_preview/

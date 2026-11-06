@@ -1,0 +1,6 @@
+.git/
+data/
+_preview/
+artifacts/
+*.log
+tests/
